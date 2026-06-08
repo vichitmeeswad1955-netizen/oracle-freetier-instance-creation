@@ -2,11 +2,12 @@ name: OCI Free VM Grabber
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
-    - cron: '0 5 * * *'
-    - cron: '0 10 * * *'
-    - cron: '0 15 * * *'
-    - cron: '0 20 * * *'
+    - cron: '0 */5 * * *'
+
+concurrency:
+  group: oci-grabber
+  cancel-in-progress: false
+
 jobs:
   grab-vm:
     runs-on: ubuntu-latest
